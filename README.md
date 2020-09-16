@@ -5,7 +5,7 @@
 Via Composer
 
 ``` bash
-$ composer require Miqdadyyy/rajaongkirapi
+
 ```
 
 ## Usage
