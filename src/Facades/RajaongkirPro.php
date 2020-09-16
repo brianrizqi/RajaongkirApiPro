@@ -13,6 +13,6 @@ class RajaongkirPro extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'RajaongkirPro';
+        return 'RajaongkirApiPro';
     }
 }

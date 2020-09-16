@@ -42,7 +42,7 @@ class RajaongkirProServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['RajaongkirPro'];
+        return ['RajaongkirApiPro'];
     }
 
     /**
