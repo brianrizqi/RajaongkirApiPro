@@ -1,0 +1,34 @@
+{
+    "name": "brianrizqi/rajaongkirpro",
+    "description": "Rajaongkir Pro for Laravel 6",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Brian Rizqi",
+            "email": "rizqibrian27@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/support": "~5|~6",
+        "php": "^7.2.5",
+        "ext-json": "*",
+        "guzzlehttp/psr7": "^1.6.1",
+        "psr/http-client": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Brianrizqi\\RajaongkirPro\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Brianrizqi\\RajaongkirPro\\RajaonkirProServiceProvider"
+            ],
+            "aliases": {
+                "RajaongkirPro": "Brianrizqi\\RajaongkirPro\\Facades\\RajaongkirPro"
+            }
+        }
+    }
+}
