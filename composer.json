@@ -24,7 +24,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Brianrizqi\\RajaongkirPro\\RajaonkirProServiceProvider"
+                "Brianrizqi\\RajaongkirPro\\RajaongkirProServiceProvider"
             ],
             "aliases": {
                 "RajaongkirPro": "Brianrizqi\\RajaongkirPro\\Facades\\RajaongkirPro"
