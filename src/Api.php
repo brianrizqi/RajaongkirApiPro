@@ -82,13 +82,13 @@ class Api
         $params = http_build_query(compact('waybill', 'courier'));
         $response = json_decode($api->requestApi('waybill', 'POST', $params))->rajaongkir;
         if ($response->status->code === 200) {
-
+            return $response->result;
         } else {
             $errors = new MessageBag();
             $errors->add('rajaongkir', $response->status->description);
             return $errors;
         }
-        return $response;
+
     }
 
     public function requestApi($endpoint, $method = 'GET', $params = null)
