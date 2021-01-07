@@ -30,12 +30,6 @@ class Subdistrict
         $this->subdistrict_name = $subdistrict_name;
     }
 
-    public static function all()
-    {
-        $response = (new Api)->all(self::class);
-        return collect($response);
-    }
-
     public static function find($id)
     {
         $response = (new Api)->find(self::class, $id);
