@@ -79,15 +79,7 @@ class Api
     public static function waybill($waybill, $courier)
     {
         $api = new Api;
-        $params = http_build_query(compact('waybill', 'courier'));
-        $response = json_decode($api->requestApi('waybill', 'POST', $params))->rajaongkir;
-        if ($response->status->code === 200) {
-
-        } else {
-            $errors = new MessageBag();
-            $errors->add('rajaongkir', $response->status->description);
-            return $errors;
-        }
+        $response = $api->requestApi('waybill', 'POST', compact('waybill', 'courier'));
         return $response;
     }
 
