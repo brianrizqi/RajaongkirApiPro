@@ -3,6 +3,8 @@
 namespace Brianrizqi\RajaongkirPro;
 
 
+use GuzzleHttp\Client;
+use Illuminate\Support\Arr;
 use Illuminate\Support\MessageBag;
 
 class Api
@@ -85,31 +87,21 @@ class Api
 
     public function requestApi($endpoint, $method = 'GET', $params = null)
     {
-        $curl = curl_init();
+        $client = new Client();
+        try {
+            $response = $client->request($method, $this->baseurl . $endpoint, [
+                'headers' => [
+                    'key' => $this->apikey
+                ],
+                'connect_timeout' => 5,
+                'form_params' => $params
+            ]);
 
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => $this->baseurl . $endpoint,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => $method,
-            CURLOPT_POSTFIELDS => $params,
-            CURLOPT_HTTPHEADER => array(
-                "key: " . $this->apikey
-            ),
-        ));
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($err) {
-            return $err;
-        } else {
-            return $response;
+            if ($response->getStatusCode() === 200) {
+                return $response->getBody()->getContents();
+            }
+        } catch (\Exception $exception){
+            return explode("\n", $exception->getMessage())[1] ?? null;
         }
     }
 }
