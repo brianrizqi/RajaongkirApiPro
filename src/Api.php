@@ -54,7 +54,14 @@ class Api
         $api = new Api;
         $origin = $api->origin;
         $originType = $api->origin_type;
-        $params = http_build_query(compact('origin', 'originType', 'destination', 'destinationType', 'weight', 'courier'));
+        $params = array(
+            'origin' => $origin,
+            'originType' => $originType,
+            'destination' => $destination,
+            'destinationType' => $destinationType,
+            'weight' => $weight,
+            'courier' => $courier
+        );
         $response = json_decode($api->requestApi('cost', 'POST', $params))->rajaongkir;
         if ($response->status->code === 200) {
             $origin_detail = $originType === 'subdistrict' ? new Subdistrict(...array_values((array)$response->origin_details)) : new City(...array_values((array)$response->origin_details));
@@ -100,7 +107,8 @@ class Api
             if ($response->getStatusCode() === 200) {
                 return $response->getBody()->getContents();
             }
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
+            return $exception;
             return explode("\n", $exception->getMessage())[1] ?? null;
         }
     }
